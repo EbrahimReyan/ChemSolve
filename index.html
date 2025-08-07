@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChemSolver</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="x-img/icon" href="logo.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Animation Container -->
+    <div class="background-animation">
+        <div class="floating-atom atom-1"></div>
+        <div class="floating-atom atom-2"></div>
+        <div class="floating-atom atom-3"></div>
+        <div class="floating-molecule molecule-1"></div>
+        <div class="floating-molecule molecule-2"></div>
+        <div class="floating-flask flask-1"></div>
+        <div class="floating-flask flask-2"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h1 class="app-title">ChemSolver</h1>
+                <p class="app-subtitle">حلال المعادلات الكيميائية الذكي</p>
+            </div>
+            
+            <!-- Dark/Light Mode Toggle -->
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-btn">
+                    <div class="atom-icon">
+                        <div class="nucleus"></div>
+                        <div class="electron-orbit">
+                            <div class="electron sun-moon"></div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="section-header">
+                    <i class="fas fa-atom"></i>
+                    <h2>إدخال المواد الكيميائية</h2>
+                </div>
+                
+                <div class="input-container">
+                    <!-- Reactants Input -->
+                    <div class="input-group">
+                        <label for="reactants">
+                            <i class="fas fa-vial"></i>
+                            المواد المتفاعلة
+                        </label>
+                        <input type="text" id="reactants" placeholder="مثال: H2 + O2" class="chemical-input">
+                    </div>
+
+                    <!-- Products Input -->
+                    <div class="input-group">
+                        <label for="products">
+                            <i class="fas fa-flask"></i>
+                            المواد الناتجة
+                        </label>
+                        <input type="text" id="products" placeholder="مثال: H2O" class="chemical-input">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reaction Type Selection -->
+            <section class="reaction-section">
+                <div class="section-header">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h2>نوع التفاعل</h2>
+                </div>
+                
+                <div class="reaction-types">
+                    <button class="reaction-btn active" data-type="synthesis">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>تركيب</span>
+                    </button>
+                    <button class="reaction-btn" data-type="decomposition">
+                        <i class="fas fa-minus-circle"></i>
+                        <span>تحلل</span>
+                    </button>
+                    <button class="reaction-btn" data-type="combustion">
+                        <i class="fas fa-fire"></i>
+                        <span>احتراق</span>
+                    </button>
+                    <button class="reaction-btn" data-type="displacement">
+                        <i class="fas fa-arrows-alt-h"></i>
+                        <span>إحلال</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Action Buttons -->
+            <section class="action-section">
+                <button id="balanceBtn" class="balance-btn">
+                    <div class="btn-content">
+                        <i class="fas fa-balance-scale"></i>
+                        <span>وزن المعادلة</span>
+                    </div>
+                    <div class="loading-indicator">
+                        <div class="bubble bubble-1"></div>
+                        <div class="bubble bubble-2"></div>
+                        <div class="bubble bubble-3"></div>
+                    </div>
+                </button>
+                
+                <button id="clearBtn" class="clear-btn">
+                    <i class="fas fa-eraser"></i>
+                    <span>مسح</span>
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <div class="section-header">
+                    <i class="fas fa-equals"></i>
+                    <h2>المعادلة الموزونة</h2>
+                </div>
+                
+                <div class="equation-display">
+                    <div id="balancedEquation" class="equation-content">
+                        <p class="placeholder-text">ستظهر المعادلة الموزونة هنا...</p>
+                    </div>
+                </div>
+                
+                <!-- Additional Info -->
+                <div class="equation-info">
+                    <div class="info-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span id="reactionType">نوع التفاعل: غير محدد</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span id="balanceStatus">الحالة: في انتظار الإدخال</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Periodic Table Quick Access -->
+            <section class="periodic-section">
+                <div class="section-header">
+                    <i class="fas fa-table"></i>
+                    <h2>العناصر الشائعة</h2>
+                </div>
+                
+                <div class="elements-grid">
+                    <button class="element-btn" data-element="H">H</button>
+                    <button class="element-btn" data-element="O">O</button>
+                    <button class="element-btn" data-element="C">C</button>
+                    <button class="element-btn" data-element="N">N</button>
+                    <button class="element-btn" data-element="Na">Na</button>
+                    <button class="element-btn" data-element="Cl">Cl</button>
+                    <button class="element-btn" data-element="Ca">Ca</button>
+                    <button class="element-btn" data-element="Fe">Fe</button>
+                    <button class="element-btn" data-element="Cu">Cu</button>
+                    <button class="element-btn" data-element="Zn">Zn</button>
+                    <button class="element-btn" data-element="Ag">Ag</button>
+                    <button class="element-btn" data-element="Au">Au</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2025 ChemSolver - تطبيق تعليمي لموازنة المعادلات الكيميائية</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
